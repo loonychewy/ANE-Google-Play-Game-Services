@@ -87,6 +87,23 @@ package com.freshplanet.ane.AirGooglePlayGames
 			}
 		}
 		
+		public function setMaxAutoSignInAttempts(maxAutoSignInAttempts:int):void
+		{
+			if (AirGooglePlayGames.isSupported)
+			{
+				_context.call("setMaxAutoSignInAttempts", maxAutoSignInAttempts);
+			}
+		}
+		
+		public function isSignedIn():Boolean
+		{
+			if (AirGooglePlayGames.isSupported)
+			{
+				return _context.call("isSignedIn");
+			}
+			return false;
+		}
+		
 		public function reportAchievement(achievementId:String, percent:Number = 0):void
 		{
 			if (AirGooglePlayGames.isSupported)
@@ -111,12 +128,30 @@ package com.freshplanet.ane.AirGooglePlayGames
 			}
 		}
 		
+		public function showLeaderboard(leaderboardId:String):void
+		{
+			if (AirGooglePlayGames.isSupported)
+			{
+				_context.call("showLeaderboard", leaderboardId);
+			}
+		}
+		
 		public function getActivePlayerName():String
 		{
 			var name:String;
 			if (AirGooglePlayGames.isSupported)
 			{
 				name = _context.call("getActivePlayerName") as String;
+			}
+			return name;
+		}
+		
+		public function getActivePlayerId():String
+		{
+			var name:String;
+			if (AirGooglePlayGames.isSupported)
+			{
+				name = _context.call("getActivePlayerId") as String;
 			}
 			return name;
 		}

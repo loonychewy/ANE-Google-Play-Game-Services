@@ -24,12 +24,16 @@ import android.util.Log;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesGetActivePlayerName;
+import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesGetActivePlayerId;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesGetLeaderboardFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesReportAchievementFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesReportScoreFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowAchievementsFunction;
+import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowLeaderboardFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSignInFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSignOutFunction;
+import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesIsSignedInFunction;
+import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSetMaxAutoSignInAttemptsFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayStartAtLaunch;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
@@ -65,10 +69,14 @@ public class ExtensionContext extends FREContext implements GameHelper.GameHelpe
 		functionMap.put("startAtLaunch", new AirGooglePlayStartAtLaunch());
 		functionMap.put("signIn", new AirGooglePlayGamesSignInFunction());
 		functionMap.put("signOut", new AirGooglePlayGamesSignOutFunction());
+		functionMap.put("isSignedIn", new AirGooglePlayGamesIsSignedInFunction());
+		functionMap.put("setMaxAutoSignInAttempts", new AirGooglePlayGamesSetMaxAutoSignInAttemptsFunction());
 		functionMap.put("reportAchievemnt", new AirGooglePlayGamesReportAchievementFunction());
 		functionMap.put("reportScore", new AirGooglePlayGamesReportScoreFunction());
 		functionMap.put("showStandardAchievements", new AirGooglePlayGamesShowAchievementsFunction());
+		functionMap.put("showLeaderboard", new AirGooglePlayGamesShowLeaderboardFunction());
 		functionMap.put("getActivePlayerName", new AirGooglePlayGamesGetActivePlayerName());
+		functionMap.put("getActivePlayerId", new AirGooglePlayGamesGetActivePlayerId());
         functionMap.put("getLeaderboard", new AirGooglePlayGamesGetLeaderboardFunction());
 		return functionMap;
 	}
@@ -129,6 +137,13 @@ public class ExtensionContext extends FREContext implements GameHelper.GameHelpe
 	{
 		logEvent("isSignedIn");
         return mHelper.isSignedIn();
+	}
+	
+	public void setMaxAutoSignInAttempts(int maxAutoSignInAttempts)
+	{
+		logEvent("setMaxAutoSignInAttempts: " + Integer.toString(maxAutoSignInAttempts));
+
+		mHelper.setMaxAutoSignInAttempts(maxAutoSignInAttempts);
 	}
 	
 	public GoogleApiClient getApiClient() {
