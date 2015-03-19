@@ -29,6 +29,7 @@ import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesGetLeaderboar
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesReportAchievementFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesReportScoreFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowAchievementsFunction;
+import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowAllLeaderboardsFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowLeaderboardFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSignInFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSignOutFunction;
@@ -74,6 +75,7 @@ public class ExtensionContext extends FREContext implements GameHelper.GameHelpe
 		functionMap.put("reportAchievemnt", new AirGooglePlayGamesReportAchievementFunction());
 		functionMap.put("reportScore", new AirGooglePlayGamesReportScoreFunction());
 		functionMap.put("showStandardAchievements", new AirGooglePlayGamesShowAchievementsFunction());
+		functionMap.put("showAllLeaderboards", new AirGooglePlayGamesShowAllLeaderboardsFunction());
 		functionMap.put("showLeaderboard", new AirGooglePlayGamesShowLeaderboardFunction());
 		functionMap.put("getActivePlayerName", new AirGooglePlayGamesGetActivePlayerName());
 		functionMap.put("getActivePlayerId", new AirGooglePlayGamesGetActivePlayerId());
@@ -135,7 +137,7 @@ public class ExtensionContext extends FREContext implements GameHelper.GameHelpe
 
 	public Boolean isSignedIn()
 	{
-		logEvent("isSignedIn");
+		logEvent("isSignedIn: " + Boolean.toString(mHelper.isSignedIn()));
         return mHelper.isSignedIn();
 	}
 	

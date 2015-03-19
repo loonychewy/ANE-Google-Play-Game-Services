@@ -32,7 +32,7 @@ package com.freshplanet.ane.AirGooglePlayGames
 		// 																						 //
 		// --------------------------------------------------------------------------------------//
 		
-		/** AirAlert is supported on Android devices. */
+		/** AirGooglePlayGames is supported on Android devices. */
 		public static function get isSupported() : Boolean
 		{
 			return Capabilities.manufacturer.indexOf("Android") != -1;
@@ -128,11 +128,18 @@ package com.freshplanet.ane.AirGooglePlayGames
 			}
 		}
 		
-		public function showLeaderboard(leaderboardId:String):void
+		public function showLeaderboard(leaderboardId:String = ""):void
 		{
 			if (AirGooglePlayGames.isSupported)
 			{
-				_context.call("showLeaderboard", leaderboardId);
+				if (leaderboardId == null || leaderboardId == "")
+				{
+					_context.call("showAllLeaderboards", leaderboardId);
+				}
+				else
+				{
+					_context.call("showLeaderboard", leaderboardId);
+				}
 			}
 		}
 		
